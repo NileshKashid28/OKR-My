@@ -1,0 +1,49 @@
+<div class="okr-admin-container">
+    <div class="top-bar">
+      <div class="search-bar-container">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search teams..."
+          [(ngModel)]="searchTerm"
+        />
+        <button class="search-btn" (click)="searchTeams()">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="20"
+            viewBox="0 0 24 24"
+            width="20"
+          >
+            <path
+              d="M21.53 20.47l-5.3-5.3a8.5 8.5 0 10-1.06 1.06l5.3 5.3a.75.75 0 101.06-1.06zM4.5 10.5a6 6 0 1112 0 6 6 0 01-12 0z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  
+    <!-- Team Grid/Table -->
+    <div class="user-grid">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Team Name</th>
+            <th>Members</th>
+            <th>Objective</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let team of filteredTeams">
+            <td>{{ team.id }}</td>
+            <td>{{ team.name }}</td>
+            <td class="member-list">
+              <span *ngFor="let member of team.members">{{ member.name }}</span>
+            </td>
+            <td>{{ team.objective }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

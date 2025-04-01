@@ -1,0 +1,209 @@
+/* Global Styles */
+body {
+  background-color: #f8f9fc;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* OKR Admin Container */
+.okr-admin-container {
+  background-color: #f8f9fc;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Top Bar with Flexbox for Button and Search */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+/* Button Styling */
+.create-user-btn,
+.create-team-btn,
+.view-team-btn {
+  background-color: #4cc9f0;
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  height: 45px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.create-user-btn:hover,
+.create-team-btn:hover,
+.view-team-btn:hover {
+  background-color: #3f37c9;
+  transform: scale(1.05);
+}
+
+/* Search Bar Container */
+.search-bar-container {
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 600px;
+  height: 45px;
+  transition: box-shadow 0.3s ease;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  color: #2b2d42;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.search-btn {
+  background-color: #4361ee;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #3f37c9;
+}
+
+/* Table/Grid Styling */
+.user-grid {
+  width: 100%;
+  max-width: 900px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #3f37c9;
+  color: white;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  border-bottom: 1px solid #e9ecef;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f9fc;
+}
+
+tr:hover {
+  background-color: #e9ecef;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Create User Form Container */
+.create-user-container {
+  max-width: 600px;
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.5s ease;
+}
+
+/* Button Group Styling */
+.button-group {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+/* Primary Button Styles */
+.btn-primary {
+  background-color: #4361ee;
+}
+
+.btn-secondary {
+  background-color: #4cc9f0;
+}
+
+.btn-cancel {
+  background-color: #e63946;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-cancel:hover {
+  opacity: 0.9;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Loader Styles */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 1000;
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

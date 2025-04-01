@@ -1,0 +1,257 @@
+<!-- overall progress section -->
+<div class="progress-container">
+    <div class="progress-header">
+        <h2>Overall Objective Progress</h2>
+        <span class="Add-objective"> 
+          <button class="add-btn" (click)="Addobjective()">
+            <svg xmlns="http://www.w3.org/2000/svg" height="22" width="20.5" viewBox="0 0 448 512">
+              <path fill="#084f3a" 
+                d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zM200 344l0-64-64 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l64 0 0-64c0-13.3 10.7-24 24-24s24 10.7 24 24l0 64 64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0 0 64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/>
+            </svg>
+          </button>
+
+          <button class="add-btn" (click)="showDeleteObjectivePopup()">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path fill="#ff0000" 
+            d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
+          </button>
+
+        </span>
+    </div>
+  
+    <div class="progress-stats">
+  <div class="progress">
+      <!-- Progress bar without ngStyle -->
+      <div class="progress-bar" [style.width.%]="calculateOverallProgress()"></div>
+  </div>
+  <div class="progress-percentage">{{ calculateOverallProgress() }}%</div> 
+</div>
+</div>
+
+<!-- objectives list section -->
+<div class="objectives-container mt-4">
+  <!-- Loop through each objective -->
+   @for( obj of objectives; track obj){
+  <div>
+      <div class="card mb-3">
+
+          <!-- Objective header with title, team, and progress -->
+          <div class="card-header d-flex justify-content-between align-items-center" (click)="toggleObjective(obj.id)">
+              <div class="card-body">
+                  <h3 class="card-title">{{ obj.obj }}</h3>
+                  <p><span class="badge">{{ obj.team }}</span> • {{ obj.tassk[0].name }}</p>
+              </div>
+
+             
+              <div class="objective-status">
+              <div class="objective-due ">
+                  <div class="progress-stats0">
+                    
+                    <div class="progress0">
+                        <!-- Progress bar without ngStyle -->
+                         
+                        <div class="progress-bar0" [style.width.%]="obj.progress"></div>
+                        
+                    </div>
+                    <div class="progress-percentage0">{{obj.progress}}%</div>
+                    
+                  </div>
+
+                  <span class="due-date text-muted"> Due {{ obj.dueDate }}</span>
+                  <span class="expand-icon"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Expandable Objective -->
+           @if(expandedObjective === obj.id){
+          <div >
+              <div class="card-body">
+                  <!-- Loop through tasks -->
+                   @for(task of obj.tassk; track task){
+                  <div >
+                      <div class="task-item" (click)="toggleSubTask(task.name)">
+                        <span>{{ task.name }}</span>
+
+                        <div class="objective-due ">
+                          <div class="progress-stats0">
+                            
+                            <div class="progress0">
+                                <!-- Progress bar without ngStyle -->
+                                 
+                                <div class="progress-bar0" [style.width.%]="obj.progress"></div>
+                                
+                            </div>
+                            <div class="progress-percentage0">{{obj.progress}}%</div>
+                          </div>
+                          <span class="due-date text-muted"> Due {{ obj.dueDate }}</span>
+        
+                          
+                      </div>
+                          
+                          
+                      </div>
+
+                      @if(expandedTask === task.name){
+                        <div >
+                          <div >
+                            @for(subtask of task.subtasks; track subtask){
+                              <div class="sub-Task">
+                                <div>{{ subtask }}
+                                  <button class="btn btn-primary" (click)="checkInSubTask(subtask)">Check-In</button>
+                                </div>
+                                <div class="objective-due ">
+                                  <div class="progress-stats0">
+                                    
+                                    <div class="progress0">
+                                        <!-- Progress bar without ngStyle -->
+                                         
+                                        <div class="progress-bar0" [style.width.%]="obj.progress"></div>
+                                        
+                                    </div>
+                                    <div class="progress-percentage0">{{obj.progress}}%</div>
+                                  </div>
+                                  <span class="due-date text-muted"> Due {{ obj.dueDate }}</span>
+                
+                                  
+                              </div>
+                              </div>  
+                            }
+                          </div>
+                      </div>
+                    }
+
+                  </div>
+                }
+              </div>
+          </div>
+        }
+      </div>
+  </div>
+}
+</div>
+
+<!-- Add Objective Form (shown when showObjectiveForm is true) -->
+<div class="objective-form-overlay" [class.active]="showObjectiveForm">
+  <div class="objective-form-container">
+    <div class="form-header">
+      <h3>Add New Objective</h3>
+      <button class="close-btn" (click)="cancelObjectiveForm()">×</button>
+    </div>
+    <div class="form-body">
+      <div class="form-group">
+        <label for="objective-title">Objective Title</label>
+        <input type="text" id="objective-title" #objectiveTitle 
+               (input)="updateObjectiveField('obj', objectiveTitle.value)" 
+               placeholder="Enter objective title">
+      </div>
+      
+      <div class="form-group">
+        <label for="objective-team">Team</label>
+        <select id="objective-team" #objectiveTeam 
+                (change)="updateObjectiveField('team', objectiveTeam.value)">
+          <option value="">Select a team</option>
+          <option value="Frontend">Frontend</option>
+          <option value="Backend">Backend</option>
+          <option value="Data Science">Data Science</option>
+          <option value="DevOps">DevOps</option>
+          <option value="QA">QA</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="objective-due-date">Due Date</label>
+        <input type="text" id="objective-due-date" #objectiveDueDate 
+               (input)="updateObjectiveField('dueDate', objectiveDueDate.value)" 
+               placeholder="e.g., May 15, 2025">
+      </div>
+      
+      <div class="form-group">
+        <label>Tasks</label>
+        <div class="task-inputs">
+          @for(task of newObjective.tassk; track task){
+          <div  class="task-container">
+            <div class="task-row">
+              <input type="text" [value]="task.name" 
+                     (input)="updateTaskName(newObjective.tassk.indexOf(task), $event)" 
+                     placeholder="Enter task name">
+              @if(newObjective.tassk.length > 1){
+              <button class="remove-btn" (click)="removeTask(newObjective.tassk.indexOf(task))">×</button>
+              }
+            </div>
+            
+            <!-- Subtasks for this task -->
+             @if(task.subtasks.length > 0){
+            <div class="subtasks-container" >
+              @for(subtask of task.subtasks; track subtask){
+              <div  class="subtask-row">
+                <input type="text" [value]="subtask" 
+                       (input)="updateSubtaskName(newObjective.tassk.indexOf(task), task.subtasks.indexOf(subtask), $event)" 
+                       placeholder="Enter subtask name">
+                <button class="remove-btn" (click)="removeSubtask(newObjective.tassk.indexOf(task), task.subtasks.indexOf(subtask))">×</button>
+              </div>
+            }
+            </div>
+          }
+            
+            <!-- Add subtask button -->
+            <button class="add-subtask-btn" (click)="addSubtask(newObjective.tassk.indexOf(task))">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="12" height="12">
+                <path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+              </svg>
+              Add Subtask
+            </button>
+          </div>
+        }
+          
+          <button class="add-task-btn" (click)="addTask()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+            </svg>
+            Add Task
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="form-footer">
+      <button class="cancel-btn" (click)="cancelObjectiveForm()">Cancel</button>
+      <button class="submit-btn" (click)="submitObjective()">Add Objective</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Delete Objective Popup -->
+<div class="objective-form-overlay" [class.active]="showDeletePopup">
+  <div class="objective-form-container delete-container">
+    <div class="form-header">
+      <h3>Delete Objective</h3>
+      <button class="close-btn" (click)="cancelDeletePopup()">×</button>
+    </div>
+    <div class="form-body">
+      <p class="delete-message">Select an objective to delete:</p>
+      
+      <div class="objectives-list">
+        @for(obj of objectives; track obj){
+        <div class="objective-delete-item" (click)="selectObjectiveToDelete(obj.id)">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h4>{{ obj.obj }}</h4>
+              <p><span class="badge bg-primary">{{ obj.team }}</span></p>
+            </div>
+            <div class="radio-container">
+              <input type="radio" [checked]="selectedObjectiveId === obj.id" (click)="selectObjectiveToDelete(obj.id)">
+              <span class="checkmark"></span>
+            </div>
+          </div>
+        </div>
+      }
+      </div>
+    </div>
+    <div class="form-footer">
+      <button class="cancel-btn" (click)="cancelDeletePopup()">Cancel</button>
+      <button class="delete-btn" [disabled]="!selectedObjectiveId" (click)="Delobjective()">Delete</button>
+    </div>
+  </div>
+</div>

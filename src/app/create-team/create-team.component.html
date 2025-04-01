@@ -1,0 +1,85 @@
+<div class="create-team-container">
+  <h2>Create Team</h2>
+  <form [formGroup]="createTeamForm" (ngSubmit)="createTeam()">
+    <!-- Team Name -->
+    <div class="form-group">
+      <label for="teamName">Team Name</label>
+      <input
+        type="text"
+        id="teamName"
+        formControlName="teamName"
+        placeholder="Enter team name"
+        required
+      />
+    </div>
+
+    <!-- Team Lead -->
+    <div class="form-group">
+      <label for="teamLead">Team Lead</label>
+      <input
+        type="text"
+        id="teamLead"
+        formControlName="teamLead"
+        placeholder="Enter team lead name"
+        required
+      />
+    </div>
+
+    <!-- Employees (Searchable Multi-select Dropdown) -->
+    <div class="form-group">
+      <label for="employees">Employees</label>
+      <input
+      type="text"
+      id="search"
+      [value]="searchTerm"
+      (input)="updateSearch($event)"
+      placeholder="Search employees..."
+      class="search-input"
+    />
+    
+      <ul class="dropdown-list">
+        <li
+          *ngFor="let employee of filteredEmployees"
+          [class.selected]="selectedEmployees.includes(employee)"
+          (click)="toggleEmployee(employee)"
+        >
+          {{ employee }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Selected Employees Badges -->
+    <div class="selected-employees">
+      <span
+        *ngFor="let employee of selectedEmployees"
+        class="badge"
+        (click)="removeEmployee(employee)"
+      >
+        {{ employee }} ×
+      </span>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        rows="4"
+        placeholder="Enter team description"
+      ></textarea>
+    </div>
+
+    <!-- Button Group -->
+    <div class="button-group">
+      <button
+        type="submit"
+        class="btn-primary"
+        [disabled]="createTeamForm.invalid"
+      >
+        Create Team
+      </button>
+      <button type="button" class="btn-cancel" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>

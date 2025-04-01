@@ -1,0 +1,663 @@
+// Custom variables from requirements
+$background-color: #f8f9fc;
+$card-background: #ffffff;
+$primary-color: #4361ee;
+$secondary-color: #3f37c9;
+$accent-color: #4895ef;
+$success-color: #4cc9f0;
+$text-primary: #2b2d42;
+$text-secondary: #6c757d;
+$border-color: #e9ecef;
+$hover-color: #f1f3f9;
+
+/* Shadows and Effects */
+$card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+$hover-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+$button-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+/* Transitions */
+$transition-speed: 0.3s;
+
+// Font families
+$font-family-heading: 'Poppins', sans-serif;
+$font-family-body: 'Inter', sans-serif;
+
+// Gradients
+$primary-gradient: linear-gradient(135deg, $primary-color, $secondary-color);
+$accent-gradient: linear-gradient(135deg, $accent-color, $success-color);
+$secondary-gradient: linear-gradient(135deg, $secondary-color, darken($secondary-color, 10%));
+
+// Global styles
+.my-teams-container {
+  background: linear-gradient(to bottom, $background-color, darken($background-color, 3%));
+  color: $text-primary;
+  //min-height: 100vh;
+  font-family: $font-family-body;
+  position: relative;
+  padding: 1.5rem;
+  
+  line-height: 1.6;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to bottom, rgba($primary-color, 0.05), transparent);
+    z-index: 0;
+  }
+}
+
+h1, h2, h3, h4, h5 {
+  color: $text-primary;
+  font-family: $font-family-heading;
+  font-weight: 700;
+}
+
+h1 {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    font-size: 1.6rem;
+    height: 4px;
+    background: $primary-gradient;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+  
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  padding: 1.5rem;
+  color: $text-primary;
+  font-family: $font-family-heading;
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: $accent-gradient;
+    border-radius: 1.5px;
+  }
+}
+
+// Team Card
+// .team-card {
+//   background-color: $card-background;
+//   border-radius: 16px;
+//   box-shadow: $card-shadow;
+//   margin-bottom: 40px;
+//   overflow: hidden;
+//   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+//   position: relative;
+  
+//   &::before {
+//     content: '';
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background: linear-gradient(to bottom right, rgba($primary-color, 0.05), rgba($accent-color, 0.05));
+//     opacity: 0;
+//     transition: opacity 0.3s ease;
+//     z-index: 0;
+//     pointer-events: none;
+//   }
+  
+//   &:hover {
+//     transform: translateY(-5px);
+//     box-shadow: 0 15px 35px rgba($primary-color, 0.1);
+    
+//     &::before {
+//       opacity: 1;
+//     }
+//   }
+  
+  .Header {
+    background: $card-background;
+  border: 1px solid #007bff;
+ margin-bottom: 0.5rem;
+  box-shadow: $card-shadow;
+  color: $text-primary;
+  border-radius: 12px;
+  padding: 2px;
+  overflow: hidden;
+  transition: all $transition-speed ease;
+  cursor: pointer;
+    h2{
+    
+    color: $text-primary;
+    margin-bottom: 0.5rem;
+    margin-left:1rem;
+    font-size: 1rem;
+    }
+
+    p{
+      margin-bottom: 0.5rem;
+      margin-left:1rem;
+      font-size: 0.7rem;
+    }
+    
+    
+    &:hover {
+      box-shadow: $hover-shadow;
+      background-color:#f1f3f9 ;
+    }
+    
+    
+    .team-name {
+      color: $text-primary;
+      margin-bottom: 0.5rem;
+      margin-left:1rem;
+      font-size: 1rem;
+      font-family: $font-family-heading;
+      font-weight: 600; 
+    }
+  }
+  
+  // .card-body {
+  //   padding: 30px 25px;
+  //   position: relative;
+  //   z-index: 1;
+  // }
+// }
+
+// Team Members
+.team-members {
+  
+  .member-avatars {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 10px 0;
+    
+    .member-avatar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      position: relative;
+      
+      &:hover {
+        transform: translateY(-8px) scale(1.05);
+        
+        .avatar-container::after {
+          opacity: 1;
+          transform: scale(1.1);
+        }
+        
+        .member-name {
+          color: $primary-color;
+          font-weight: 600;
+        }
+      }
+      
+      .avatar-container {
+        position: relative;
+        width: 65px;
+        height: 65px;
+        margin-bottom: 12px;
+        border-radius: 50%;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          top: -5px;
+          left: -5px;
+          right: -5px;
+          bottom: -5px;
+          border-radius: 50%;
+          background: linear-gradient(to bottom right, rgba($primary-color, 0.2), rgba($accent-color, 0.2));
+          opacity: 0; 
+          transform: scale(0.8);
+          transition: all 0.3s ease;
+          z-index: -1;
+        }
+        
+        .avatar-initials {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: rgb(0, 0, 0);
+          font-family: $font-family-heading;
+          font-weight: 600;
+          font-size: 1.3rem;
+          letter-spacing: 0.5px;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+          background-size: 300% 300%;
+          animation: gradientShift 8s ease infinite;
+          transition: all 0.3s ease;
+          
+          @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+        }
+        
+        
+          
+          .progress-circle-inner {
+            
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: $font-family-heading;
+          font-weight: 600;
+          font-size: 1.3rem;
+          letter-spacing: 0.5px;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            inset: 5px;
+            border-radius: 50%;
+            background-color: white;
+            color:black;
+          }
+          .progress-circle {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            width: calc(100% + 10px);
+            height: calc(100% + 10px);
+            border-radius: 50%;
+            background: conic-gradient($primary-color var(--progress), rgba($border-color, 0.3) 0);
+            animation: progressFadeIn 1s ease forwards;
+            
+            @keyframes progressFadeIn {
+              from { opacity: 0; transform: scale(0.9); }
+              to { opacity: 1; transform: scale(1); }
+            }
+        }
+      }
+      
+      .member-name {
+        font-size: 0.85rem;
+        color: $text-secondary;
+        text-align: center;
+        max-width: 90px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-family: $font-family-body;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        margin-top: 2px;
+      }
+    }
+  }
+}
+
+// Team Objectives
+.objectives-container {
+  // margin-top: 20px;
+  // margin-top: 2rem;
+  
+  h2 {
+     margin-bottom: 1.5rem;
+  }
+  padding: 20px;
+}
+
+.card {
+  background: $card-background;
+  border: 1px solid #007bff;
+ margin-bottom: 0.5rem;
+  box-shadow: $card-shadow;
+  border-radius: 12px;
+  padding: 2px;
+  overflow: hidden;
+  transition: all $transition-speed ease;
+  cursor: pointer;
+  h3{
+    
+  color: $text-primary;
+  margin-bottom: 0.5rem;
+  margin-left:1rem;
+  font-size: 1rem;
+  }
+  p{
+    margin-bottom: 0.5rem;
+    margin-left:1rem;
+    font-size: 0.7rem;
+  }
+}
+
+.card:hover {
+  box-shadow: $hover-shadow;
+  background-color:#f1f3f9 ;
+}
+
+.card-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color $transition-speed ease;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+}
+
+
+
+
+.objective-meta {
+  font-size: 14px;
+}
+
+.objective-status {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.8rem;
+  margin-right:0.5rem;
+  margin-top:0.2rem
+}
+.objective-status {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  color:#4361ee; 
+}
+.progress-stats0{
+  flex:5;
+  display:flex;
+  align-items:center;
+  width:15rem;
+}
+.progress0 {
+  font-weight: bold;
+  flex:1;
+  height: 10px;
+  background: rgba($primary-color, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right:2cqmax;
+}
+.progress-percentage0{
+  color:#4361ee;
+  font-size:1rem ;
+  font-weight: bold;
+}
+
+.progress-bar0 {
+  height: 100%;
+  background: linear-gradient(90deg, $primary-color, $accent-color);
+  border-radius: 10px;
+  transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+  
+}
+
+.objective-due {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  
+  .due-date {
+    color: $text-secondary;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    
+    &::before {
+      content: "🕙";
+      font-size: 0.8rem;
+    }
+  }
+  
+  .expand-icon {
+    font-size: 1rem;
+    color: $primary-color;
+    font-weight: 500;
+    line-height: 1;
+    transition: transform $transition-speed ease;
+    
+    .expanded & {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.badge{
+  color:#007bff;
+}
+
+
+
+
+.objective-assignments {
+  padding: 5px 20px 20px;
+  background-color: darken($hover-color, 3%);
+  animation: slideDown 0.3s ease forwards;
+  transform-origin: top;
+  
+  @keyframes slideDown {
+    from { opacity: 0; transform: scaleY(0); }
+    to { opacity: 1; transform: scaleY(1); }
+  }
+  
+  h5 {
+    font-size: 1rem;
+    margin: 15px 0;
+    color: $text-primary;
+    font-family: $font-family-heading;
+    position: relative;
+    display: inline-block;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: $accent-gradient;
+      border-radius: 1px;
+    }
+  }
+  
+  .assignments-list {
+    .assignment-item {
+      background-color: $card-background;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      transition: all 0.3s ease;
+      border-left: 3px solid transparent;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      &:hover {
+        transform: translateX(5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        border-left-color: $accent-color;
+      }
+      
+      .assignment-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        margin-right: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-family: $font-family-heading;
+        font-weight: 600;
+        font-size: 0.8rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+      
+      .assignment-name {
+        flex: 1;
+        font-size: 0.95rem;
+        color: $text-primary;
+        font-family: $font-family-body;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        
+        &:hover {
+          color: $primary-color;
+        }
+      }
+      
+      .status-badge {
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        color: white;
+        font-family: $font-family-body;
+        font-weight: 500;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+        }
+        
+        &.bg-success {
+          background: linear-gradient(135deg, $success-color, darken($success-color, 10%));
+        }
+        
+        &.bg-accent {
+          background: linear-gradient(135deg, $accent-color, darken($accent-color, 10%));
+        }
+        
+        &.bg-secondary {
+          background: linear-gradient(135deg, $secondary-color, darken($secondary-color, 15%));
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .team-members .member-avatars {
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .objective-header .d-flex {
+    flex-direction: column;
+    align-items: flex-start !important;
+    
+    .objective-progress {
+      margin-top: 12px;
+      width: 100%;
+    }
+  }
+  
+  .team-card {
+    margin-bottom: 30px;
+    
+    .card-header {
+      padding: 15px 20px;
+      
+      .team-name {
+        font-size: 1.4rem;
+      }
+    }
+    
+    .card-body {
+      padding: 20px;
+    }
+  }
+  
+  .member-avatar .avatar-container {
+    width: 55px;
+    height: 55px;
+  }
+  
+  .assignment-item {
+    padding: 10px !important;
+  }
+}
+
+// Animation for page load
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.team-card {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+  
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
+
+// Hover effect for the entire card
+.card-body {
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: $accent-gradient;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    z-index: 2;
+  }
+  
+  &:hover::before {
+    transform: translateY(0);
+  }
+}
+

@@ -1,0 +1,122 @@
+<div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <!-- <a routerLink="/" class="logo">BUG BOUNTY</a> -->
+        <h1>Login into Your Account</h1>
+      </div>
+  
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-container">
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              placeholder="your.email@example.com"
+              [class.is-invalid]="
+                loginForm.get('email')?.invalid &&
+                loginForm.get('email')?.touched
+              "
+            />
+            <div class="input-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                ></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+          </div>
+          <div
+            class="error-message"
+            *ngIf="
+              loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+            "
+          >
+            <span *ngIf="loginForm.get('email')?.errors?.['required']"
+              >Email is required</span
+            >
+            <span *ngIf="loginForm.get('email')?.errors?.['email']"
+              >Please enter a valid email address</span
+            >
+          </div>
+        </div>
+        <!-- OTP Input Section -->
+        <div class="form-group" *ngIf="otpVisible" [formGroup]="otpForm">
+          <label for="otp">Enter OTP</label>
+          <div class="input-container">
+            <input
+              type="text"
+              id="otp"
+              formControlName="otp"
+              placeholder="123456"
+              [class.is-invalid]="
+                otpForm.get('otp')?.invalid && otpForm.get('otp')?.touched
+              "
+            />
+            <div class="input-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 6v6l4 2"></path>
+              </svg>
+            </div>
+          </div>
+          <div
+            class="error-message"
+            *ngIf="otpForm.get('otp')?.invalid && otpForm.get('otp')?.touched"
+          >
+            <span *ngIf="otpForm.get('otp')?.errors?.['required']"
+              >OTP is required</span
+            >
+            <span *ngIf="otpForm.get('otp')?.errors?.['pattern']"
+              >OTP must be 6 digits</span
+            >
+          </div>
+        </div>
+  
+        <div *ngIf="errorMessage" class="error-alert">
+          {{ errorMessage }}
+        </div>
+  
+        <div *ngIf="successMessage" class="success-alert">
+          {{ successMessage }}
+        </div>
+        <button
+          type="submit"
+          class="btn-submit"
+          [disabled]="
+            isSubmitting ||
+            (otpVisible && otpForm.invalid) ||
+            (!otpVisible && loginForm.invalid)
+          "
+        >
+          <span *ngIf="!isSubmitting">Login</span>
+          <span *ngIf="isSubmitting" class="spinner"></span>
+        </button>
+      </form>
+    </div>
+  </div>
+   

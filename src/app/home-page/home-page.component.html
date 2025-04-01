@@ -1,0 +1,87 @@
+<div class="app-container">
+  <header class="app-header">
+    <div class="header-content">
+      <div class="logo">
+        <h1 id="LogoOfBounteous" (click)="navigateToLogin()">bounteous OKR</h1>
+      </div>
+      
+      <div class="user-profile">
+        <div class="notifications">
+          <span class="notification-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="notification-badge">1</span>
+          </span>
+        </div>
+        
+        <div class="user-info" (click)="toggleUserInfoDropdown()">
+          <div class="avatar">{{getUserInitials()}}</div>
+          <span class="user-name">{{this.userName}}</span>
+          <span class="dropdown-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+          <div class="dropdown-menu" [ngClass]="{'visible': isDropDownVisible}">
+            <button class="dropdown-item" (click)="logout()">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main navigation -->
+  <nav class="app-nav">
+    <div class="nav-container">
+      <button class="nav-item" [class.active]="selectedTab === 'okrAdmin'" (click)="selectedTab = 'okrAdmin'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+        OKR ADMIN
+      </button>
+      
+      <button class="nav-item" [class.active]="selectedTab === 'progress'" (click)="selectedTab = 'progress'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 20V10"></path>
+          <path d="M12 20V4"></path>
+          <path d="M6 20v-6"></path>
+        </svg>
+        Objective Progress
+      </button>
+
+      <button class="nav-item" [class.active]="selectedTab === 'teams'" (click)="selectedTab = 'teams'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+        My Teams
+      </button>
+
+      <button class="nav-item" [class.active]="selectedTab === 'approve'" (click)="selectedTab = 'approve'">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 11 12 14 22 4"></polyline>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+        </svg>
+        Approvals
+      </button>
+    </div>
+  </nav>
+
+  <div *ngIf="selectedTab === 'okrAdmin'">
+    <app-okr-admin></app-okr-admin>
+  </div>
+  <div *ngIf="selectedTab === 'progress'">
+    <app-objective></app-objective>
+  </div>
+  <div *ngIf="selectedTab === 'approve'">
+    <app-approvals></app-approvals>
+  </div>
+  <div *ngIf="selectedTab === 'teams'">
+    <app-my-teams></app-my-teams>
+  </div>
+</div>

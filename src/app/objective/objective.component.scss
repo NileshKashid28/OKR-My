@@ -1,0 +1,700 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
+
+/* Color Palette - Modern and Professional */
+$background-color: #f8f9fc;
+$card-background: #ffffff;
+$primary-color: #4361ee;
+$secondary-color: #3f37c9;
+$accent-color: #4895ef;
+$success-color: #4cc9f0;
+$text-primary: #2b2d42;
+$text-secondary: #6c757d;
+$border-color: #e9ecef;
+$hover-color: #f1f3f9;
+
+/* Typography */
+$font-family-heading: 'Poppins', sans-serif;
+$font-family-body: 'Inter', sans-serif;
+
+/* Shadows and Effects */
+$card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+$hover-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+$button-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+/* Transitions */
+$transition-speed: 0.3s;
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $background-color;
+  font-family: $font-family-body;
+  color: $text-primary;
+  line-height: 1.6;
+
+}
+
+.objectives-tracker {
+  max-width: 1200px;
+  // margin: 2rem auto;
+  padding: 0;
+}
+
+/* Typography */
+h2 {
+  font-family: $font-family-heading;
+  font-weight: 700;
+  color: $text-primary;
+  margin-bottom: 0.5rem;
+  font-size: 1.6rem;
+}
+
+h3 {
+  font-family: $font-family-heading;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: $text-primary;
+}
+
+p {
+  font-family: $font-family-body;
+  color: $text-secondary;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.progress-container {
+  background: $card-background;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: $card-shadow;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  /* Ensure no wrapping occurs */
+
+  .progress-header {
+    display: flex;
+    /* Ensure header content stays in line */
+    align-items: center;
+    /* Vertically center content inside the header */
+    justify-content: flex-start;
+    /* Align content to the left */
+    gap: 10px;
+    /* Add space between elements inside the header (optional) */
+
+    .Add-objective {
+      display: inline-block;
+    }
+
+    .add-btn {
+      border: none;
+      /* Remove any border around the button */
+      background: transparent;
+      /* Keep background transparent */
+      padding: 0;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      margin-right: 3px;
+
+      /* Remove the default outline and focus box */
+      outline: none;
+    }
+
+    .add-btn svg {
+      width: 20.5px;
+      /* Match the SVG width */
+      height: 22px;
+      /* Match the SVG height */
+    }
+  }
+
+  .progress-stats {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 250px;
+  }
+
+  .progress {
+    flex: 1rem;
+    height: 10px;
+    background: rgba($primary-color, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 500px;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, $primary-color, $accent-color);
+    border-radius: 10px;
+    transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+
+  }
+
+  .progress-percentage {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: $primary-color;
+    min-width: 60px;
+    text-align: right;
+  }
+}
+
+
+
+
+
+
+
+
+
+.objectives-container {
+  // margin-top: 20px;
+  // margin-top: 2rem;
+
+  h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  padding: 20px;
+}
+
+.card {
+  background: $card-background;
+  border: 1px solid #007bff;
+  margin-bottom: 0.5rem;
+  box-shadow: $card-shadow;
+  border-radius: 12px;
+  padding: 2px;
+  overflow: hidden;
+  transition: all $transition-speed ease;
+  cursor: pointer;
+
+  h3 {
+
+    color: $text-primary;
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+    font-size: 1rem;
+  }
+
+  p {
+    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+    font-size: 0.7rem;
+  }
+
+}
+
+.card:hover {
+  box-shadow: $hover-shadow;
+  background-color: #f1f3f9;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color $transition-speed ease;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+}
+
+
+
+
+.objective-meta {
+  font-size: 14px;
+}
+
+.objective-status {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+  margin-top: 0.2rem
+}
+
+
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  font-family: $font-family-heading;
+  background-color: #e9ecef;
+  font-size: 0.85rem;
+
+  border-radius: 8px;
+  // margin:0.85rem;
+  margin-bottom: 0.85rem;
+  margin-top: 0.85rem;
+  margin-left: 2rem;
+  // margin-right:1rem;
+  transition: all $transition-speed ease;
+
+  .progress-stats0 {
+    flex: 5;
+    display: flex;
+    align-items: center;
+    width: 15rem;
+    margin-bottom: 0.001rem;
+  }
+}
+
+.task-item:hover {
+  color: rgb(2, 2, 2);
+  background-color: #adadad;
+  transform: translateY(-2px);
+  box-shadow: $button-shadow;
+}
+
+
+
+
+.objective-status {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  color: #4361ee;
+}
+
+.progress-stats0 {
+  flex: 5;
+  display: flex;
+  align-items: center;
+  width: 15rem;
+}
+
+.progress0 {
+  font-weight: bold;
+  flex: 1;
+  height: 10px;
+  background: rgba($primary-color, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 2cqmax;
+}
+
+.progress-percentage0 {
+  color: #4361ee;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.progress-bar0 {
+  height: 100%;
+  background: linear-gradient(90deg, $primary-color, $accent-color);
+  border-radius: 10px;
+  transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+
+}
+
+.objective-due {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+
+  .due-date {
+    color: $text-secondary;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    &::before {
+      content: "🕙";
+      font-size: 0.8rem;
+    }
+  }
+
+  .expand-icon {
+    font-size: 1rem;
+    color: $primary-color;
+    font-weight: 500;
+    line-height: 1;
+    transition: transform $transition-speed ease;
+
+    .expanded & {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.badge {
+  color: #4361ee;
+  background-color: rgb(255, 255, 255);
+  font-size: 0.7rem;
+}
+
+
+
+
+.sub-Task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem;
+  font-family: $font-family-heading;
+  background: #e3e3e3;
+  font-size: 0.75rem;
+
+  border-radius: 8px;
+  margin-left: 3.5rem;
+  // margin-right:2rem;
+  margin-bottom: 0.5rem;
+  transition: all $transition-speed ease;
+}
+
+
+.sub-Task:hover {
+  color: rgb(0, 0, 0);
+  background: #c8d3ff;
+  transform: translateY(-2px);
+  box-shadow: $button-shadow;
+}
+
+$light-blue-1: #739ade;
+/* Light blue */
+$light-blue-2: #5097fc;
+/* Softer light blue */
+$light-blue-3: #3381f8;
+
+.sub-Task button {
+  background: linear-gradient(135deg, $light-blue-1, $light-blue-2, $light-blue-3);
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 0.3rem 1rem;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-family: $font-family-body;
+  cursor: pointer;
+  transition: all $transition-speed ease;
+  box-shadow: $button-shadow;
+  align-self: center;
+  align-items: left;
+  margin-left: 0.5rem;
+
+}
+
+.sub-Task button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  background-color: #e1e3ec;
+}
+
+.sub-Task button:active {
+  transform: translateY(0);
+}
+
+
+// Gradients
+$primary-gradient: linear-gradient(135deg, $primary-color, $secondary-color);
+$accent-gradient: linear-gradient(135deg, $accent-color, $success-color);
+$danger-gradient: linear-gradient(135deg, #ff4d4d, #ff0000);
+$danger-color: #ff0000;
+
+
+.objective-form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.objective-form-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.objective-form-container {
+  background: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transform: scale(0.9);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.objective-form-overlay.active .objective-form-container {
+  transform: scale(1);
+}
+
+.form-header {
+  background: linear-gradient(to right, #4f46e5, #7c3aed);
+  padding: 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.form-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.form-header .close-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.form-header .close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.form-body {
+  padding: 25px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+}
+
+.task-inputs {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.task-container {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.task-row input {
+  flex: 1;
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.remove-btn:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.subtasks-container {
+  margin-left: 20px;
+  padding-left: 12px;
+  border-left: 2px dashed #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.subtask-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.add-subtask-btn {
+  background: transparent;
+  border: 1px dashed #d1d5db;
+  color: #6366f1;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  width: fit-content;
+  margin-left: 20px;
+}
+
+.add-subtask-btn:hover {
+  background-color: rgba(99, 102, 241, 0.05);
+  border-color: #6366f1;
+}
+
+.add-task-btn {
+  background: transparent;
+  border: 1px dashed #d1d5db;
+  color: #6366f1;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  width: 100%;
+  justify-content: center;
+}
+
+.add-task-btn:hover {
+  background-color: rgba(99, 102, 241, 0.05);
+  border-color: #6366f1;
+}
+
+.form-footer {
+  padding: 15px 25px 25px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  border-top: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  border: 1px solid #d1d5db;
+  color: #6b7280;
+}
+
+.cancel-btn:hover {
+  background-color: #f9fafb;
+  color: #111827;
+}
+
+.submit-btn {
+  background: linear-gradient(to right, #4f46e5, #7c3aed);
+  border: none;
+  color: white;
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(99, 102, 241, 0.3);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(99, 102, 241, 0.2);
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .progress-container {
+    padding: 20px;
+  }
+
+  .progress-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+
+    .Add-objective {
+      align-self: flex-end;
+    }
+  }
+
+  .card-header {
+    flex-direction: column;
+
+    .card-body {
+      width: 100%;
+      padding: 15px 15px 5px;
+    }
+
+    .objective-status {
+      width: 100%;
+      padding: 0 15px 15px;
+      align-items: flex-start;
+    }
+
+    .objective-due {
+      align-items: flex-start;
+    }
+  }
+
+  .task-item,
+  .sub-Task {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
+    .btn {
+      align-self: flex-end;
+    }
+  }
+}

@@ -1,0 +1,93 @@
+/* Create User Form Container */
+.create-user-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    animation: fadeIn 0.5s ease;
+  }
+  
+  /* Form Group Styling */
+  .form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  /* Label Styling */
+  label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #3f37c9;
+  }
+  
+  /* Input Field Styling */
+  input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: box-shadow 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Input Focus Effect */
+  input:focus {
+    box-shadow: 0 0 8px rgba(67, 97, 238, 0.3);
+    transform: scale(1.02);
+  }
+  
+  /* Button Group Styling */
+  .button-group {
+    margin-top: 1rem;
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Button Styles */
+  .btn-primary,
+  .btn-cancel {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Primary Button */
+  .btn-primary {
+    background-color: #4361ee;
+  }
+  
+  .btn-primary:hover {
+    background-color: #3f37c9;
+    transform: scale(1.05);
+  }
+  
+  /* Cancel Button */
+  .btn-cancel {
+    background-color: #e63946;
+  }
+  
+  .btn-cancel:hover {
+    background-color: #d62828;
+    transform: scale(1.05);
+  }
+  
+  /* Fade-in Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

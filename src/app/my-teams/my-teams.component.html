@@ -1,0 +1,100 @@
+<div class="my-teams-container">
+  <div class="container-fluid py-4">
+    <h1 class="mt">My Teams</h1>
+    
+    <div class="row">
+      <!-- Team Card -->
+       @for(team of teams; track team){
+      <div class="col-12 mb-4" >
+        <div class="Team-card">
+          <div class="Header">
+            <h2 class="team-name">{{ team.name }}</h2>
+          </div>
+          
+          <div class="bodymain">
+            <!-- Team Members -->
+            <div class="team-members mb-4">
+              <div class="member-avatars">
+                @for(member of team.members; track member){
+                <div class="member-avatar" >
+                  <div class="avatar-container">
+                    <div class="avatar-initials" [style.background-color]="getAvatarColor(member.name)">
+                      {{ getInitials(member.name) }}
+                    </div>
+                    <!-- problem  -->
+                    <div class="progress-circle" [style.--progress]="member.progress + '%'">
+                      <div class="progress-circle-inner">{{ getInitials(member.name) }}</div>
+                    </div>
+                  </div>
+                  <span class="member-name">{{ member.name }}</span>
+                </div>
+              }
+              </div>
+            </div>
+            
+            <!-- Team Objectives -->
+            <div class="objectives-container mt-4">      
+                @for(objective of team.objectives; track objective){
+                <div>
+                  <div class="card mb-3">
+                  <div class="card-header d-flex justify-content-between align-items-center" (click)="toggleObjective(objective)">
+                    <div class="card-body">
+                      <h4 class="card-title">{{ objective.title }}</h4>
+                      <p>• {{ objective.description }}</p>
+                    </div>
+                    <div class="objective-status">
+                      <div class="objective-due ">
+                          <div class="progress-stats0">
+                            
+                            <div class="progress0">
+                                <!-- Progress bar without ngStyle -->
+                                 
+                                <div class="progress-bar0" [style.width.%]="objective.progress"></div>
+                                
+                            </div>
+                            <div class="progress-percentage0">{{ objective.progress}}%</div>
+                            
+                          </div>
+        
+                          <span class="due-date text-muted"> Due {{ objective.dueDate }}</span>
+                          <span class="expand-icon" [class]="getChevronClass(objective.isExpanded)"></span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Expanded Assignments -->
+                   @if(objective.isExpanded){
+                  <div class="objective-assignments" >
+                    <h5>Assignments</h5>
+                    <div class="assignments-list">
+                      @for(assignment of objective.assignments; track assignment){
+                      <div class="assignment-item">
+                        <div class="d-flex align-items-center">
+                          <div class="assignment-avatar" [style.background-color]="getAvatarColor(assignment.userName)">
+                            {{ getInitials(assignment.userName) }}
+                          </div>
+                          <span class="assignment-name">{{ assignment.userName }}</span>
+                          <span class="status-badge" 
+                                [class.bg-success]="assignment.status === 'completed'"
+                                [class.bg-accent]="assignment.status === 'in-progress'"
+                                [class.bg-secondary]="assignment.status === 'pending'">
+                            {{ assignment.status }}
+                          </span>
+                        </div>
+                      </div>
+                    }
+                    </div>
+                  </div>
+                }
+                </div>
+                </div>
+              }
+              </div>
+            </div>
+          </div>
+        </div>
+
+    }
+    </div>
+  </div>
+</div>

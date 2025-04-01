@@ -1,0 +1,102 @@
+<div class="container">
+    <div class="header">
+      <!-- <h2>Team Management</h2>
+      <p>Monitor your team's progress and approve tasks</p> -->
+      <div class="button-group">
+        <button (click)="approvalView = false" [class.active]="!approvalView">Team Overview</button>
+        <button (click)="approvalView = true" [class.active]="approvalView">
+          Pending Approvals ({{ pendingApprovals.length }})
+        </button>
+      </div>
+    </div>
+    
+    @if(!approvalView){
+    <div >
+      <div class="filters">
+        <input type="text" (input)="updateSearch($event)" placeholder="Search employees..." />
+        <select (change)="updateTeamFilter($event)">
+          <option value="all">All Teams</option>
+          <option value="Frontend">Frontend</option>
+          <option value="Backend">Backend</option>
+          <option value="Data Science">Data Science</option>
+        </select>
+      </div>
+  
+      <div class="employee-list">
+        @for(employee of filteredEmployees; track employee){
+        <div class="employee-card">
+          <div class="employee-header" (click)="toggleEmployee(employee.id)">
+            <div class="employee-info">
+              <span class="avatar">{{ employee.initials }}</span>
+              <div>
+                <h3>{{ employee.name }}</h3>
+                <p>{{ employee.role }} • {{ employee.team }}</p>
+              </div>
+            </div>
+            <div class="progress">
+              <span>{{ employee.progress }}%</span>
+              <div class="progress-bar">
+                <div class="progress-fill" [style.width.%]="employee.progress"></div>
+              </div>
+            </div>
+          </div>
+  
+          @if(expandedEmployee === employee.id){
+          <div  class="employee-details">
+            <p>Objectives: {{ employee.objectives }}</p>
+            <p>Key Results: {{ employee.keyResults }}</p>
+            <p>Tasks: {{ employee.completedTasks }} / {{ employee.completedTasks + employee.pendingTasks }}</p>
+  
+            @if(getEmployeePendingApprovals(employee.id).length > 0){
+            <div >
+                @for(approval of getEmployeePendingApprovals(employee.id); track approval){
+              <div class="approval-section">
+                <h4>Pending Approvals</h4>
+                <div class="approval-item">
+                  <p><strong>Task:</strong> {{ approval.taskTitle }}</p>
+                  <p><strong>Objective:</strong> {{ approval.objectiveTitle }}</p>
+                  <p><strong>Submitted:</strong> {{ formatDate(approval.submittedDate) }}</p>
+                  <div class="approval-buttons">
+                    <button class="approve" (click)="approveTask(approval.id)">✔ Approve</button>
+                    <button class="reject" (click)="rejectTask(approval.id)">✖ Reject</button>
+                  </div>
+                </div>
+              </div>
+            }
+            </div>
+        }
+          </div>
+        }
+        </div>
+    }
+      </div>
+    </div>
+}
+  
+@if(approvalView){
+    <div >
+
+      <h3>Pending Approvals</h3>
+      @for(approval of pendingApprovals; track approval){
+      <div  class="pending-approvals">
+        <div class="pending-card">
+          <div class="pending-header">
+            <span class="avatar">{{ approval.employeeInitials }}</span>
+            <div>
+              <h4>{{ approval.employeeName }}</h4>
+              <p>{{ approval.taskTitle }}</p>
+            </div>
+          </div>
+          <p><strong>Objective:</strong> {{ approval.objectiveTitle }}</p>
+          <p><strong>Submitted:</strong> {{ formatDate(approval.submittedDate) }}</p>
+          <div class="approval-buttons">
+            <button class="approve" (click)="approveTask(approval.id)">✔ Approve</button>
+            <button class="reject" (click)="rejectTask(approval.id)">✖ Reject</button>
+          </div>
+        </div>
+      </div>
+    }
+    </div>
+}
+  </div>
+  

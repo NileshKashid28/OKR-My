@@ -1,0 +1,157 @@
+/* Inherits global styles */
+
+.okr-admin-container {
+    background-color: #f8f9fc;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  /* Top Bar */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 1.5rem;
+  }
+  
+  
+  
+  /* Search Bar Container */
+  .search-bar-container {
+    background-color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 1000px;
+    height: 45px;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  /* Search Input */
+  .search-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Search Button */
+  .search-btn {
+    background-color: #4361ee;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-btn:hover {
+    background-color: #3f37c9;
+  }
+  
+  /* Container for the grid */
+.user-grid {
+    width: 100%;
+    max-width: 1000px; // Increased width for a better layout
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-top: 1.5rem;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  /* Table Styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Table Header */
+  thead {
+    background-color: #3f37c9;
+    color: white;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+  
+  /* Header and Row Styles */
+  th,
+  td {
+    padding: 1rem;
+    text-align: left;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.95rem;
+  }
+  
+  /* Header Styling */
+  th {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Alternating Row Colors */
+  tr:nth-child(even) {
+    background-color: #f8f9fc;
+  }
+  
+  /* Row Hover Effect */
+  tr:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Team Members Cell - Inline Pills for Members */
+  .member-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .member-list span {
+    background-color: #f8f9fc;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #3f37c9;
+    box-shadow: 0 2px 6px rgba(63, 55, 201, 0.1);
+  }
+  
+  /* Objective Text Styling */
+  td:last-child {
+    font-size: 0.95rem;
+    color: #2b2d42;
+    font-weight: 500;
+  }
+  
+  /* Fade-in Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
