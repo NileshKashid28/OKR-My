@@ -1,6 +1,7 @@
 <div class="create-user-container">
   <h2>Create User</h2>
   <form [formGroup]="createUserForm" (ngSubmit)="onSubmit()" class="create-user-form">
+    
     <!-- Username -->
     <div class="form-group">
       <label for="username">Username</label>
@@ -43,21 +44,54 @@
       </div>
     </div>
 
-    <!-- Manager ID (updated field from 'manager') -->
-    <div class="form-group">
-      <label for="managerId">Manager ID</label>
-      <input
-        type="number"
-        id="managerId"
-        formControlName="managerId"
-        placeholder="Enter manager ID"
-      />
-      <div *ngIf="createUserForm.get('managerId')?.invalid && createUserForm.get('managerId')?.touched" class="error-message">
-        Manager ID is required and must be a number.
-      </div>
+    <!-- Manager (Searchable Multi-select Dropdown) -->
+<div class="form-group">
+  <label for="manager">Manager ID</label>
+  <input
+    type="number"
+    id="searchManager"
+    [value]="searchTerm"
+    (input)="updateSearch($event)"
+    placeholder="Manager ID..."
+    class="search-input"
+  />
+
+  <!-- Dropdown list with manager options -->
+  <ul class="dropdown-list" *ngIf="filteredManagers.length > 0">
+    <li
+      *ngFor="let manager of filteredManagers"
+      [class.selected]="selectedManagers.includes(manager)"
+      (click)="toggleManager(manager)"
+    >
+      {{ manager }}
+    </li>
+  </ul>
+
+  <!-- Display selected managers -->
+  <div class="selected-managers">
+    <span
+      *ngFor="let manager of selectedManagers"
+      class="badge"
+      (click)="removeManager(manager)"
+    >
+      {{ manager }} ×
+    </span>
+  </div>
+</div>
+
+
+    <!-- Selected Managers Badges -->
+    <div class="selected-managers">
+      <span
+        *ngFor="let manager of selectedManagers"
+        class="badge"
+        (click)="removeManager(manager)"
+      >
+        {{ manager }} ×
+      </span>
     </div>
 
-    <!-- Role (if needed) -->
+    <!-- Role (optional) -->
     <div class="form-group">
       <label for="role">Role</label>
       <input

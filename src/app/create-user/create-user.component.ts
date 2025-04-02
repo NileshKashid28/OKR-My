@@ -1,38 +1,70 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-create-user',
-  imports:[ReactiveFormsModule],
   templateUrl: './create-user.component.html',
   styleUrls: ['./create-user.component.scss'],
+  imports: [ReactiveFormsModule]
 })
-export class CreateUserComponent implements OnInit {
-  createUserForm!: FormGroup;
-  constructor(private fb: FormBuilder) {}
+export class CreateUserComponent {
+  createUserForm: FormGroup;
+  searchTerm: string = '';
+  filteredManagers: string[] = [];
+  selectedManagers: string[] = [];  // Array to hold selected managers
 
-  ngOnInit(): void {
+  // Example list of managers
+  managers: string[] = ['John Doe', 'Jane Smith', 'Bob Johnson', 'Alice Williams'];
+
+  constructor(private fb: FormBuilder) {
     this.createUserForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
-      designation: [''],
-      manager: [''],
+      designation: ['', [Validators.required]],
+      role: [''],
     });
   }
 
-  // Submit Handler
-  onSubmit() {
-    if (this.createUserForm.valid) {
-      console.log('User Created:', this.createUserForm.value);
-      alert('User created successfully!');
-      this.createUserForm.reset();
+  updateSearch(event: Event) {
+    const searchTerm = (event.target as HTMLInputElement).value;
+    this.searchTerm = searchTerm;
+
+    // Only filter if there is input
+    if (searchTerm) {
+      this.filteredManagers = this.managers.filter(manager =>
+        manager.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    } else {
+      this.filteredManagers = [];
     }
   }
 
-  // Cancel Button
+  toggleManager(manager: string) {
+    // Toggle manager selection
+    if (this.selectedManagers.includes(manager)) {
+      this.removeManager(manager);
+    } else {
+      this.selectedManagers.push(manager);
+    }
+    this.searchTerm = ''; // Reset the search term when a manager is selected
+    this.filteredManagers = []; // Clear the dropdown list
+  }
+
+  removeManager(manager: string) {
+    // Remove manager from the selected list
+    const index = this.selectedManagers.indexOf(manager);
+    if (index !== -1) {
+      this.selectedManagers.splice(index, 1);
+    }
+  }
+
+  onSubmit() {
+    // Submit form logic
+    console.log(this.createUserForm.value);
+  }
+
   onCancel() {
-    alert('Action cancelled!');
-    this.createUserForm.reset();
-    
+    // Cancel form logic
+    console.log('Form cancelled');
   }
 }

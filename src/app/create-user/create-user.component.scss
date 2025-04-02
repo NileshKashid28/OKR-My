@@ -1,93 +1,156 @@
 /* Create User Form Container */
 .create-user-container {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    animation: fadeIn 0.5s ease;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.5s ease;
+}
+
+/* Form Group Styling */
+.form-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Label Styling */
+label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3f37c9;
+}
+
+/* Input Field Styling */
+input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+/* Input Focus Effect */
+input:focus {
+  box-shadow: 0 0 8px rgba(67, 97, 238, 0.3);
+  transform: scale(1.02);
+}
+
+/* Button Group Styling */
+.button-group {
+  margin-top: 1rem;
+  display: flex;
+  gap: 10px;
+}
+
+/* Button Styles */
+.btn-primary,
+.btn-cancel {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Primary Button */
+.btn-primary {
+  background-color: #4361ee;
+}
+
+.btn-primary:hover {
+  background-color: #3f37c9;
+  transform: scale(1.05);
+}
+
+/* Cancel Button */
+.btn-cancel {
+  background-color: #e63946;
+}
+
+.btn-cancel:hover {
+  background-color: #d62828;
+  transform: scale(1.05);
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
-  /* Form Group Styling */
-  .form-group {
-    margin-bottom: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  /* Label Styling */
-  label {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #3f37c9;
-  }
-  
-  /* Input Field Styling */
-  input {
-    padding: 0.75rem 1rem;
-    border: 1px solid #e9ecef;
-    border-radius: 8px;
-    font-size: 1rem;
-    outline: none;
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
-  }
-  
-  /* Input Focus Effect */
-  input:focus {
-    box-shadow: 0 0 8px rgba(67, 97, 238, 0.3);
-    transform: scale(1.02);
-  }
-  
-  /* Button Group Styling */
-  .button-group {
-    margin-top: 1rem;
-    display: flex;
-    gap: 10px;
-  }
-  
-  /* Button Styles */
-  .btn-primary,
-  .btn-cancel {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  /* Primary Button */
-  .btn-primary {
-    background-color: #4361ee;
-  }
-  
-  .btn-primary:hover {
-    background-color: #3f37c9;
-    transform: scale(1.05);
-  }
-  
-  /* Cancel Button */
-  .btn-cancel {
-    background-color: #e63946;
-  }
-  
-  .btn-cancel:hover {
-    background-color: #d62828;
-    transform: scale(1.05);
-  }
-  
-  /* Fade-in Animation */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
+}
+
+/* Dropdown List Styling */
+.search-input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 8px rgba(67, 97, 238, 0.3);
+  transform: scale(1.02);
+}
+
+.dropdown-list {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 8px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.dropdown-list li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-list li:hover {
+  background-color: #f0f0f0;
+}
+
+.selected {
+  background-color: #4361ee;
+  color: white;
+}
+
+.selected:hover {
+  background-color: #3f37c9;
+}
+
+/* Selected Managers Badges */
+.selected-managers {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.badge {
+  background-color: #e0e0e0;
+  padding: 5px 10px;
+  margin: 2px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.badge:hover {
+  background-color: #d0d0d0;
+}
